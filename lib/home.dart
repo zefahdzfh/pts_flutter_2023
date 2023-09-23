@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:pts_2023/cart.dart';
+import 'package:pts_2023/sepatu.dart';
 // import 'package:lucide_icons/lucide_icons.dart';
 
 class Home extends StatefulWidget {
@@ -33,7 +35,7 @@ class _HomeState extends State<Home> {
               borderRadius: BorderRadius.circular(8)),
           child: Center(
             child: Padding(
-              padding: const EdgeInsets.only(left: 24,right: 24),
+              padding: const EdgeInsets.only(left: 24, right: 24),
               child: Text(
                 title,
                 style: TextStyle(
@@ -52,6 +54,57 @@ class _HomeState extends State<Home> {
     }
 
     return Scaffold(
+      appBar: AppBar(
+        leadingWidth: 1000,
+        elevation: 0,
+        foregroundColor: Color(0xff292D32),
+        backgroundColor: Colors.transparent,
+        toolbarHeight: 70,
+        leading: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: Row(
+            children: [
+              Container(
+                height: 48,
+                width: 300,
+                padding: EdgeInsets.only(left: 16, right: 16, top: 3),
+                decoration: BoxDecoration(
+                    color: Color(0xffF2F2F7), borderRadius: BorderRadius.circular(8)),
+                child: TextFormField(
+                  style: TextStyle(color: Color(0xff292D32)),
+                  decoration: InputDecoration(
+                      icon: Icon(
+                        Iconsax.search_normal,
+                        color: Color(0xff292D32),
+                      ),
+                      hintText: 'Cari Pakaian Pria ...',
+                      hintStyle: TextStyle(color: Color(0xff6F7075)),
+                      border: InputBorder.none),
+                ),
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          Row(
+            children: [
+              Icon(Iconsax.notification),
+              SizedBox(
+                width: 20,
+              ),
+              TextButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Cart()));
+                  },
+                  child: Icon(
+                    Iconsax.bag,
+                    color: Color(0xff292D32),
+                  )),
+            ],
+          ),
+        ],
+      ),
       body: ListView(
         children: [
           Padding(
@@ -59,43 +112,6 @@ class _HomeState extends State<Home> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      height: 48,
-                      width: 300,
-                      padding: EdgeInsets.only(left: 16, right: 16, top: 3),
-                      decoration: BoxDecoration(
-                          color: Color(0xffF2F2F7),
-                          borderRadius: BorderRadius.circular(8)),
-                      child: TextFormField(
-                        style: TextStyle(color: Color(0xff292D32)),
-                        decoration: InputDecoration(
-                            icon: Icon(
-                              Iconsax.search_normal,
-                              color: Color(0xff292D32),
-                            ),
-                            hintText: 'Cari Pakaian Pria ...',
-                            hintStyle: TextStyle(color: Color(0xff6F7075)),
-                            border: InputBorder.none),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 24,
-                    ),
-                    Row(
-                      children: [
-                        Icon(Iconsax.notification),
-                        SizedBox(
-                          width: 24,
-                        ),
-                        Icon(Iconsax.bag),
-                      ],
-                    ),
-                  ],
-                ),
                 SizedBox(
                   height: 24,
                 ),
@@ -145,36 +161,92 @@ class _HomeState extends State<Home> {
                     ],
                   ),
                 ),
-                SizedBox(height: 24,),
-                Column(
-                  children: [
-                    Row(
-                      children: [
-                        Container(
-                          width: 180,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Image.asset('assets/batik.png'),
-                              SizedBox(height: 12,),
-                              Text('Batik Pria Lengan \n Panjang', style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xff292D32)
-                              ),),
-                              SizedBox(height: 12,),
-                              Text('Rp199.900', style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                                color: Color(0xff292D32)
-                              ),)
-                            ],
-                          ),
-                          
-                        )
-                      ],
-                    )
-                  ],
+                SizedBox(
+                  height: 24,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, right: 20),
+                  child: Column(
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Product(0, 'assets/batik.png',
+                              'Batik Pria Lengan Panjang', 'Rp199.900'),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Sepatu()));
+                            },
+                            child: Container(
+                              width: 180,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Image.asset('assets/sepatu.png'),
+                                  SizedBox(
+                                    height: 12,
+                                  ),
+                                  Text(
+                                    'New Balance 992 Grey Original',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400,
+                                        color: Color(0xff292D32)),
+                                  ),
+                                  SizedBox(
+                                    height: 12,
+                                  ),
+                                  Text(
+                                    'Rp1.240.000',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                        color: Color(0xff292D32)),
+                                  )
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 24,
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Product(1, 'assets/jeans.png',
+                              'Skinny Jeans Dark Blue Wanita', 'Rp379.900'),
+                          Product(
+                              2,
+                              'assets/kacamata.png',
+                              'Kacamata Baca Anti Radiasi Blue Ray',
+                              'Rp125.000'),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 24,
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Product(
+                              3,
+                              'assets/kemeja.png',
+                              'Kemeja Pria Polos Lengan Pendek Oxford',
+                              'Rp119.000'),
+                          Product(4, 'assets/hoodie.png',
+                              'Human Greatness Hoodie Hitam', 'Rp229.000'),
+                        ],
+                      ),
+                    ],
+                  ),
                 )
               ],
             ),
@@ -206,6 +278,39 @@ class _HomeState extends State<Home> {
             icon: Icon(Iconsax.profile_circle),
             label: 'Profile',
           ),
+        ],
+      ),
+    );
+  }
+
+  Container Product(
+      int index, String fotoProduk, String namaProduk, String hargaProduk) {
+    return Container(
+      width: 180,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Image.asset(fotoProduk),
+          SizedBox(
+            height: 12,
+          ),
+          Text(
+            namaProduk,
+            style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+                color: Color(0xff292D32)),
+          ),
+          SizedBox(
+            height: 12,
+          ),
+          Text(
+            hargaProduk,
+            style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: Color(0xff292D32)),
+          )
         ],
       ),
     );
