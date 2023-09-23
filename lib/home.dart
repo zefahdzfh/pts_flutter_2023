@@ -108,7 +108,7 @@ class _HomeState extends State<Home> {
       body: ListView(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 24, right: 24, top: 30),
+            padding: const EdgeInsets.only(left: 24, right: 24, top: 5),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
